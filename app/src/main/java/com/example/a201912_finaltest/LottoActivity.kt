@@ -1,14 +1,14 @@
 package com.example.a201912_finaltest
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.TextView
+import com.example.a201912_finaltest.controller.LottoNum
 import kotlinx.android.synthetic.main.activity_lotto.*
-import java.security.KeyStore
-import kotlin.random.Random
 
 class LottoActivity : BaseActivity() {
 
-    val winLottoNumArr = ArrayList<Int>()
+    var winLottoNumArr = ArrayList<Int>()
+    val winLottoTextViewList =ArrayList<TextView>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,29 +32,25 @@ class LottoActivity : BaseActivity() {
 //        (10, 2, 25,32 ,8, 16) => 작은 숫자부터 나타나도록 정렬
 //        여기까지 완료 되면 6개의 테긋트 뷰에 반영.
 
-        for(i in 0..5){
-            while(true){
-                val randomInt = Random.nextInt(45) + 1
+        winLottoNumArr = LottoNum().process()
 
-                var isDuplOk = true
+        for ( i in 0..5){
+            val tempTextView = winLottoTextViewList[i]
+            val winNum = winLottoNumArr[i]
 
-                for (num in winLottoNumArr){
-                    if(randomInt == num){
-                        isDuplOk = false
-                        break
-                    }
-                }
-
-                if(isDuplOk){
-                    winLottoNumArr.add(randomInt)
-                    break
-                }
-            }
+            tempTextView.text = winNum.toString()
         }
+
 
     }
 
     override fun setValues() {
+        winLottoTextViewList.add(lottoNumTxt01)
+        winLottoTextViewList.add(lottoNumTxt02)
+        winLottoTextViewList.add(lottoNumTxt03)
+        winLottoTextViewList.add(lottoNumTxt04)
+        winLottoTextViewList.add(lottoNumTxt05)
+        winLottoTextViewList.add(lottoNumTxt06)
 
     }
 }
