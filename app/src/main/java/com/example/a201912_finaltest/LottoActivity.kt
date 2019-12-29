@@ -96,12 +96,11 @@ class LottoActivity : BaseActivity() {
         else{
 
         }
-        totalWinMoneyTxt.text = totalWinMoney.toString()
+        totalWinMoneyTxt.text = String.format("%,d원",totalWinMoney)
 
 //            사용금액 : 한장 살대마다 천원 증가
         usedMoney +=1000
-        usedMoneyTxt.text=usedMoney.toString()
-
+        usedMoneyTxt.text = String.format("%,d원",usedMoney)
     }
 
     override fun setValues() {
